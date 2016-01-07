@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Runity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_signup">SignUp</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="signup">sign up</string>
+    <string name="name">name</string>
+    <string name="surname">surname</string>
+    <string name="birthyear">birth year</string>
+    <string name="currentcity">current city</string>
+    <string name="confirm_password">confirm pass</string>
+    <string name="email">e-mail</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_live_map">LiveMap</string>
+    <string name="title_activity_routes_hub">RoutesHub</string>
+    <string name="title_activity_test_routes_hub">TestRoutesHub</string>
+    <string name="title_activity_edit_route">EditRoute</string>
+    <string name="title_activity_notif_screen">NotifScreen</string>
+    <string name="title_activity_splash_screen">Runity</string>
+    <string name="title_activity_add_challenge">AddChallenge</string>
+</resources>
