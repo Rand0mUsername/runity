@@ -1,0 +1,19 @@
+1415539103577	Delete element
+1415540510424	Rename field 'spinner1'
+1415540517270	Rename field 'spinner2'
+1415540532062	Rename field 'routesttable_spinner_datefilter'
+1415540552444	Rename field 'editText1'
+1415540560014	Rename field 'editText2'
+1415549973382	Delete element
+1415550010038	Delete element
+1415550013866	Delete element
+1415550020372	Delete element
+1415550028258	Delete element
+1415550040267	Rename resource 'activity_routes_table.xml'
+1415550047705	Rename type 'RoutesTable'
+1415551232921	Rename field 'listView1'
+1415551244845	Rename field 'routestable_spinner_timefilter2'
+1415551252227	Rename field 'routestable_spinner_timefilter1'
+1415551260251	Rename field 'routestable_spinner_distfilter'
+1415551269309	Rename field 'routestable_spinner_datefilter'
+1415551276801	Rename field 'routestable_spinner_pplfilter'

@@ -1,0 +1,24 @@
+package com.runity;
+
+import com.google.android.gms.maps.model.LatLng;
+
+public class Run
+{
+    double timeElapsed;
+    double distanceCovered;
+    double caloriesBurned;
+    double startSecs;
+    LatLng lastPosition;
+    
+    public Run( double timeElapsed, double distanceCovered, double caloriesBurned, double startSecs, LatLng lastPosition )
+    {
+        super();
+        this.timeElapsed = timeElapsed;
+        this.distanceCovered = distanceCovered;
+        this.caloriesBurned = caloriesBurned;
+        this.startSecs = startSecs;
+        this.lastPosition = lastPosition;
+    }
+    
+    
+}

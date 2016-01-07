@@ -1,0 +1,15 @@
+INDEX VERSION 1.126+C:\Users\RandomUsername\Desktop\Runity\AndruljidPLS\.metadata\.plugins\org.eclipse.jdt.core
+4038367805.index
+4133445492.index
+848856923.index
+1374964475.index
+4261381094.index
+3449714725.index
+3493702082.index
+1308535246.index
+3508714068.index
+229339207.index
+2337991792.index
+2819068985.index
+2952176798.index
+3741674498.index

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="257" key="DIALOG_WIDTH"/>
+		<item value="325" key="DIALOG_Y_ORIGIN"/>
+		<item value="1043" key="DIALOG_X_ORIGIN"/>
+		<item value="382" key="DIALOG_HEIGHT"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="EnterRun" key="selection"/>
+		<list key="findhistory">
+			<item value="enterrun"/>
+			<item value="enter"/>
+			<item value="Resume"/>
+			<item value="googleMap"/>
+			<item value="OnMap"/>
+			<item value="GPS"/>
+			<item value=".addMark"/>
+			<item value="onPause()"/>
+		</list>
+		<list key="replacehistory">
+			<item value="Flag"/>
+			<item value="00:00:00"/>
+			<item value="listRoutes"/>
+			<item value="long"/>
+			<item value="10.0.2.2"/>
+			<item value="10.0.2.2:8080"/>
+			<item value="localhost"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="247" key="DIALOG_Y_ORIGIN"/>
+		<item value="452" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

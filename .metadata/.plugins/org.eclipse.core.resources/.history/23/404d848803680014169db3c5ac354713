@@ -1,0 +1,212 @@
+
+package com.runity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+// import android.view.Menu;
+// import android.view.Window;
+// import android.view.WindowManager;
+
+public class LoginScreen extends Activity implements OnTouchListener
+{
+    
+    private ProgressDialog pDialog;
+    
+    private static String url_check_loginpass = "http://192.168.2.24/android_connect/profiles/check_loginpass.php";
+    
+    JSONParser jsonParser = new JSONParser();
+    
+    private static final String TAG_SUCCESS = "success";
+    
+    TextView signUp;
+    
+    Button logIn;
+    
+    EditText usernameField, passwordField;
+    
+    TextView errorLog;
+    
+    String username, password;
+    
+    @Override
+    protected void onCreate( Bundle savedInstanceState )
+    {
+        super.onCreate( savedInstanceState );
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView( R.layout.activity_login_screen );
+        
+        signUp = ( TextView ) findViewById( R.id.main_textView_signup );
+        signUp.setOnTouchListener( this );
+        logIn = ( Button ) findViewById( R.id.main_button_login );
+        logIn.setOnTouchListener( this );
+        
+        usernameField = ( EditText ) findViewById( R.id.main_editText_username );
+        passwordField = ( EditText ) findViewById( R.id.main_editText_password );
+        
+        errorLog = ( TextView ) findViewById( R.id.main_textView_errorlog );
+        
+    }
+    
+    private boolean areValid( String username, String password )
+    {
+        try
+        {
+            String result = new checkLoginPass().execute( username, password ).get();
+            // Log.d( "TAGCINA", result );
+            Log.d( "PARAMI", "ETO MENE OVDE" + " " + result );
+            
+            if( result.equals( "0" ) )
+                return false;
+            return true;
+        }
+        catch( InterruptedException e )
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch( ExecutionException e )
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return true;
+    }
+    
+    class checkLoginPass extends AsyncTask < String, String, String >
+    {
+        /*
+         * @Override protected void onPreExecute() { super.onPreExecute(); pDialog = new ProgressDialog( context ); pDialog.setMessage( "Checking..." ); pDialog.setIndeterminate( false ); pDialog.setCancelable( true ); pDialog.show(); }
+         */
+        
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            pDialog = new ProgressDialog( LoginScreen.this );
+            pDialog.setMessage( "Logging in..." );
+            pDialog.setIndeterminate( false );
+            pDialog.setCancelable( true );
+            pDialog.show();
+        }
+        
+        protected String doInBackground( String... args )
+        {
+            
+            try
+            {
+                // Building Parameters
+                List < NameValuePair > params = new ArrayList < NameValuePair >();
+                params.add( new BasicNameValuePair( "username", args[0] ) );
+                params.add( new BasicNameValuePair( "password", args[1] ) );
+                
+                // getting product details by making HTTP request
+                // Note that product details url will use GET request
+                // Log.d()
+                Log.d( "PARAMI", args[1] + "!" + args[0] );
+                JSONObject json = jsonParser.makeHttpRequest( url_check_loginpass, "GET", params );
+                
+                // check your log for json response
+                Log.d( "Json Response", json.toString() );
+                
+                // json success tag
+                int success = json.getInt( TAG_SUCCESS );
+                if( success == 1 )
+                {
+                    Log.d( "PARAMI", "ETO MENE ODJE" );
+                    return Integer.toString( json.getInt( "valid" ) );
+                }
+                else
+                {
+                    Log.d( "PARAMI", "ETO MENE SKROZ DOLE" );
+                    // something failed
+                    Log.d( "Json Error : ", json.getString( "message" ) );
+                    return "0";
+                }
+            }
+            catch( JSONException e )
+            {
+                e.printStackTrace();
+                return "0";
+            }
+        }
+        
+        /*
+         * protected void onPostExecute( String file_url ) { // dismiss the dialog once product uupdated pDialog.dismiss(); }
+         */
+        protected void onPostExecute( String file_url )
+        {
+            // go back to the login screen
+            
+            // dismiss the dialog once done
+            pDialog.dismiss();
+            // finish(); // kao da se vratimo na login activity
+        }
+    }
+    
+    
+    @SuppressLint( "ClickableViewAccessibility" )
+    @Override
+    public boolean onTouch( View arg0, MotionEvent arg1 )
+    {
+        // go to signUp
+        if( arg0.getId() == signUp.getId() )
+        {
+            if( arg1.getAction() == MotionEvent.ACTION_UP )
+            {
+                Intent Intent1 = new Intent( this, SignUp.class );
+                startActivity( Intent1 );
+                return true;
+            }
+        }
+        else if( arg0.getId() == logIn.getId() )
+        {
+            if( arg1.getAction() == MotionEvent.ACTION_UP )
+            {
+                errorLog.setText( "Lemme see." );
+                
+                username = usernameField.getText().toString();
+                password = SignUp.SHA256( passwordField.getText().toString() );
+                if( true || areValid( username, password ) )
+                {
+                    Intent Intent1 = new Intent( this, MainMenu.class );
+                    Intent1.putExtra( "USERNAME", username );
+                    startActivity( Intent1 );
+                    finish();
+                }
+                else
+                {
+                    Log.d( "PARAMI", "invalid" );
+                    
+                    errorLog.setText( "Nedovoljno legitiman login/pass kombinejshn." );
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    /*
+     * @Override public boolean onCreateOptionsMenu(Menu menu) { // Inflate the menu; this adds items to the action bar if it is present. getMenuInflater().inflate(R.menu.main, menu); return true; }
+     */
+    
+}
